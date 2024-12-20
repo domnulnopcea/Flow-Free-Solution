@@ -115,7 +115,7 @@ function calculatePosition($colorIndex, $k, $direction) {
 
     global $colorsInitialPosition, $temporaryPath;
 
-    if (!count($temporaryPath[$colorIndex])) {
+    if (!isset($temporaryPath[$colorIndex]) || !count($temporaryPath[$colorIndex])) {
         $lastPosition = $colorsInitialPosition[$colorIndex];
         $temporaryPath[$colorIndex] = [];
         $temporaryPath[$colorIndex][] = $lastPosition;
@@ -225,8 +225,9 @@ function findSolution()
 
 function readData() {
     global $input, $colors, $colorsInitialPosition, $rows, $cols;
-    $handle = fopen(__DIR__ . '/input_6.txt', 'r');
+    $handle = fopen(__DIR__ . '/input_4.txt', 'r');
     echo "Input data is" . PHP_EOL;
+
     while (($buffer = fgets($handle)) !== false) {
         echo $buffer;
         $rows++;
